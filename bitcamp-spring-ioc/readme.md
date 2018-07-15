@@ -1,6 +1,6 @@
 # Spring IoC 컨테이너 사용법
 
-## step01. Spring IoC 컨테이너 기본 사용
+## step01. Spring IoC 컨테이너 사용
 
 ### 스프링 IoC 컨테이너는 ApplicationContext를 구현한다.
 
@@ -61,5 +61,7 @@
         }
     }
     ```
-    
+
+## step02. 객체 생성
+
 
