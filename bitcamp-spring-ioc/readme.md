@@ -1,9 +1,9 @@
 # Spring IoC 컨테이너 사용법
 
 ## step01 Spring IoC 컨테이너 기본 사용
-- 스프링 IoC 컨테이너는 ApplicationContext를 구현한다.
+### 스프링 IoC 컨테이너는 ApplicationContext를 구현한다.
 
-- ApplicationContext 구현체 종류
+#### ApplicationContext 구현체 종류
  > 1) XML 파일에 작성된 설정 정보를 읽어서 처리하는 IoC 컨테이너
      >> ClassPathXmlApplicationContext (자바 classpath에서 xml 파일을 찾는다)
      >> FileSystemXmlApplicationContext (OS 파일시스템에서 xml 파일을 찾는다)
