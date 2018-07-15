@@ -20,8 +20,7 @@
 
   - FileSystemXmlApplicationContext (OS 파일시스템에서 xml 파일을 찾는다)
     - OS 파일시스템에서 지정된 경로의 파일을 찾는다.
-    - 파일시스템의 실제 경로를 지정하게 되면 나중에 그 경로가 바뀌면<br/>
-             또 소스 코드를 변경해야 하는 문제가 있다.<br/>
+    - 파일시스템의 실제 경로를 지정하게 되면 나중에 그 경로가 바뀌면 또 소스 코드를 변경해야 하는 문제가 있다.<br/>
              그래서 보통 ClassPathXmlApplicationContext를 많이 사용한다.
              
     ```
