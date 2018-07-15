@@ -27,10 +27,9 @@
 ```
     ApplicationContext iocContainer = 
         new FileSystemXmlApplicationContext(
-            "C:\\Users\\SH KANG\\git\\bitcamp-cloud-computing-review
-            \\bitcamp-spring-ioc\\src\\main\\java\\bitcamp\\cloud
-            \\step01\\application-context.xml");
- 
+            "C:\\Users\\SH KANG\\git\\bitcamp-cloud-computing-review"
+                + "\\bitcamp-spring-ioc\\src\\main\\java\\bitcamp\\cloud"
+                + "\\step01\\application-context.xml");
 ```
       
 ##### 2) 클래스 안에 작성된 애노테이션을 읽어서 처리하는 IoC 컨테이너
