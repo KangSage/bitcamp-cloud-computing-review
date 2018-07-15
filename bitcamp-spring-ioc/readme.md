@@ -12,6 +12,7 @@
     - 물론 XML 파일은 스프링 규칙에 따라 태그가 작성되어 있다.
     - 설정 파일에 지정된 객체를 자동으로 생성하고 의존 객체를 주입하여 보관한다.
     
+    
     ```
     ApplicationContext iocContainer = 
         new ClassPathXmlApplicationContext(
@@ -23,6 +24,7 @@
     - 파일시스템의 실제 경로를 지정하게 되면 나중에 그 경로가 바뀌면 또 소스 코드를 변경해야 하는 문제가 있다.<br/>
              그래서 보통 ClassPathXmlApplicationContext를 많이 사용한다.
              
+    
     ```
     ApplicationContext iocContainer = 
         new FileSystemXmlApplicationContext(
@@ -34,6 +36,7 @@
 ##### 2) 클래스 안에 작성된 애노테이션을 읽어서 처리하는 IoC 컨테이너
   - AnnotationConfigApplicationContext
     - 스프링 설정정보를 담고 있는 클래스 정보를 넘긴다.
+    
     
     ```
     ApplicationContext iocContainer = 
