@@ -5,8 +5,10 @@
 
 - ApplicationContext 구현체 종류
   1) XML 파일에 작성된 설정 정보를 읽어서 처리하는 IoC 컨테이너
+  '''
      => ClassPathXmlApplicationContext (자바 classpath에서 xml 파일을 찾는다)
      => FileSystemXmlApplicationContext (OS 파일시스템에서 xml 파일을 찾는다)
+  '''
   2) 클래스 안에 작성된 애노테이션을 읽어서 처리하는 IoC 컨테이너
      => AnnotationConfigApplicationContext
      
