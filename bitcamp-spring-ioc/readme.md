@@ -12,11 +12,11 @@
     - 물론 XML 파일은 스프링 규칙에 따라 태그가 작성되어 있다.
     - 설정 파일에 지정된 객체를 자동으로 생성하고 의존 객체를 주입하여 보관한다.
     
-'''
+```
     ApplicationContext iocContainer = 
         new ClassPathXmlApplicationContext(
             "bitcamp/java106/step01/application-context.xml");
-'''
+```
 
   - FileSystemXmlApplicationContext (OS 파일시스템에서 xml 파일을 찾는다)
     - OS 파일시스템에서 지정된 경로의 파일을 찾는다.
