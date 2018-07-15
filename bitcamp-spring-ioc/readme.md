@@ -13,9 +13,9 @@
     - 설정 파일에 지정된 객체를 자동으로 생성하고 의존 객체를 주입하여 보관한다.
     
 ```
-ApplicationContext iocContainer = 
-    new ClassPathXmlApplicationContext(
-        "bitcamp/java106/step01/application-context.xml");
+    ApplicationContext iocContainer = 
+        new ClassPathXmlApplicationContext(
+            "bitcamp/cloud/step01/application-context.xml");
 ```
 
   - FileSystemXmlApplicationContext (OS 파일시스템에서 xml 파일을 찾는다)
@@ -23,6 +23,13 @@ ApplicationContext iocContainer =
     - 파일시스템의 실제 경로를 지정하게 되면 나중에 그 경로가 바뀌면<br/>
              또 소스 코드를 변경해야 하는 문제가 있다.<br/>
              그래서 보통 ClassPathXmlApplicationContext를 많이 사용한다.
+             
+```
+    ApplicationContext iocContainer = 
+        new FileSystemXmlApplicationContext(
+            "C:\\Users\\SH KANG\\git\\bitcamp-cloud-computing-review\\bitcamp-spring-ioc\\src\\main\\java\\bitcamp\\cloud\\step01\\application-context.xml");
+ 
+```
       
 ##### 2) 클래스 안에 작성된 애노테이션을 읽어서 처리하는 IoC 컨테이너
   - AnnotationConfigApplicationContext
