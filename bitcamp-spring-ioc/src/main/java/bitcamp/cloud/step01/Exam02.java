@@ -22,7 +22,9 @@ public class Exam02 {
         // => 또 소스 코드를 변경해야 하는 문제가 있다.
         // 그래서 보통 ClassPathXmlApplicationContext를 많이 사용한다.
         iocContainer = new FileSystemXmlApplicationContext(
-                "C:\\Users\\SH KANG\\git\\bitcamp-cloud-computing-review\\bitcamp-spring-ioc\\src\\main\\java\\bitcamp\\cloud\\step01\\application-context.xml");
+                "C:\\Users\\SH KANG\\git\\bitcamp-cloud-computing-review"
+                + "\\bitcamp-spring-ioc\\src\\main\\java\\bitcamp\\cloud"
+                + "\\step01\\application-context.xml");
 
         // IoC 컨테이너에 보관된 객체를 꺼내기
         Car car = (Car) iocContainer.getBean("c1");
