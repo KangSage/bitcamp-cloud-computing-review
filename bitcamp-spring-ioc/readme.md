@@ -13,9 +13,9 @@
     - 설정 파일에 지정된 객체를 자동으로 생성하고 의존 객체를 주입하여 보관한다.
     
 ```
-    ApplicationContext iocContainer = 
-        new ClassPathXmlApplicationContext(
-            "bitcamp/java106/step01/application-context.xml");
+ApplicationContext iocContainer = 
+    new ClassPathXmlApplicationContext(
+        "bitcamp/java106/step01/application-context.xml");
 ```
 
   - FileSystemXmlApplicationContext (OS 파일시스템에서 xml 파일을 찾는다)
