@@ -5,6 +5,7 @@ import bitcamp.pms.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,24 +50,43 @@ public class MemberController {
     }
 
     @PostMapping("add")
-    public String add(Member member) throws Exception {
+    public Object add(@RequestParam String id, Member member) throws Exception {
+        /*
+        System.out.printf("URL 디코딩 전 : %s\n", id);
+        System.out.printf("URL 디코딩 후 : %s\n", URLDecoder.decode(id, "UTF-8"));
+        */
+        member.setId(URLDecoder.decode(id, "UTF-8"));
+        HashMap<String, Object> result = new HashMap<>();
         memberService.add(member);
-        return "redirect:list";
+        result.put("status", "success");
+        return result;
     }
 
     @RequestMapping("update")
-    public String update(Member member) throws Exception {
+    public Object update(@RequestParam() String id, Member member) throws Exception {
+
+        member.setId(URLDecoder.decode(id, "UTF-8"));
+        HashMap<String, Object> result = new HashMap<>();
         if (memberService.update(member) == 0) {
-            return "member/updatefail";
+            result.put("status", "fail");
+            result.put("error", "해당 아이디가 없습니다.");
         } else {
-            return "redirect:list";
+            result.put("status", "success");
         }
+        return result;
     }
 
     @RequestMapping("delete")
-    public String delete(String id) throws Exception {
-            memberService.delete(id);
-            return "redirect:list";
+    public Object delete(String id) throws Exception {
+        String urlId = URLDecoder.decode(id, "UTF-8");
+        HashMap<String, Object> result = new HashMap<>();
+        if (memberService.delete(urlId) == 0) {
+            result.put("status", "fail");
+            result.put("error", "해당 아이디가 없습니다.");
+        } else {
+            result.put("status", "success");
+        }
+        return result;
     }
 
 }
