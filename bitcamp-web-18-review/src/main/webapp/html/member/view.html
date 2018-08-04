@@ -137,7 +137,7 @@
 
         xhr.open('POST', '../../json/member/add', true);
         xhr.setRequestHeader('Content-Type',
-            'application/x-www-form-urlencoded');
+            'application/x-www-form-urlencoded;charset=UTF-8');
         var uriId = encodeURI(encodeURIComponent(eId.value));
         xhr.send(`id=${uriId}&email=${eEmail.value}&password=${ePassword.value}`);
     };
