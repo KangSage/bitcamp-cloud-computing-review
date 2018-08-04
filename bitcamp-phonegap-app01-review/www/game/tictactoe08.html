@@ -7,9 +7,10 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
     <title>tictactoe</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <style>
     #cell-box {
-        border: 1px solid blue;
+        /*border: 1px solid blue;*/
         width: 150px;
         overflow: hidden;
     }
@@ -20,16 +21,30 @@
         width: 50px;
         height: 50px;
         border: 1px solid gray;
-        padding: 10px;
+        padding-top: 50px;
         text-align: center;
+        overflow: hidden;
+    }
+
+    .cell-o {
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoB19lqvU4n_dYMjKMpHO-kfgoDwVnnbaDQ5YDVf8G8LgCIUPw");
+        background-size: 40px;
+        background-repeat: no-repeat;
+    }
+
+    .cell-x {
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIAWD6Mr42qQIjGTG7Qv9rTxsu8xnsZtymVUodos1at2yHYUZ");
+        background-size: 40px;
+        background-repeat: no-repeat;
     }
     </style>
 </head>
 <body>
+<div class="container">
 <h1>Tic-Tac-Toe 게임</h1>
-<h2>5단계</h2>
+<h2>8단계</h2>
 <ul>
-    <li>컴퓨터의 반응을 추가한다.</li>
+    <li>UI 입히기.</li>
 </ul>
 <div id="cell-box">
     <a data-pos="11" class="cell"></a>
@@ -42,10 +57,13 @@
     <a data-pos="32" class="cell"></a>
     <a data-pos="33" class="cell"></a>
 </div>
-<a id="new-game">새 게임</a>
+<div class="toolbar">
+<a id="new-game" class="btn btn-primary">새 게임</a>
+</div>
+</div>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="tictectoe05.js"></script>
+<script src="tictectoe08.js"></script>
 </body>
 </html>

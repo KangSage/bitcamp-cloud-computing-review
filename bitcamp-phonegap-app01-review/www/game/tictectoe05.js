@@ -3,7 +3,12 @@ var human = 'X',
     cells = $('.cell'),
     count = 0;
 
-$('.cell').click((e) => {
+
+
+for (let i = 0; i <= cells.length; i++)
+    console.log(cells[i]);
+
+cells.click((e) => {
     console.log($(e.target).attr('data-pos'));
     $(e.target).text(human);
 

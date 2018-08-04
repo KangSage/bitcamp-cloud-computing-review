@@ -1,20 +1,20 @@
 "use strict";
 
-const human = '1',
-      computer = '10',
-      cellBox = $('#cell-box'),
-      cells = $('.cell'),
-      cellData = [0,0,0,0,0,0,0,0,0];
+const human = 1,
+    computer = 10,
+    cellBox = $('#cell-box'),
+    cells = $('.cell'),
+    cellData = [0,0,0,0,0,0,0,0,0];
 
-var count = 0,
+let count = 0,
     isCompleted = false,
     isWorking = false;
 
 cellBox.on('complete', (e, result) => {
     setTimeout(() => {
-        if (result === 3) alert("인간 승!");
-        else if (result === 30) alert("컴퓨터 승!");
-        else alert('비겼다!');
+        if (result == 3) alert("인간 승2!");
+        else if (result == 30) alert("컴퓨터 승2!");
+        else alert("引き分け!");
     }, 500);
 });
 
@@ -24,16 +24,16 @@ cells.click((e) => {
     console.log('번호:', no);
 
     if (isCompleted || isWorking) return;
-    if (cellData[no].innerHTML > 0 ) return;
-        
+    if (cellData[no] > 0) return;
+
     cell.addClass('cell-x');
-    cellData[no] = 1;
+    cellData[no] = human;
     count++;
-    
+
     computeGame();
-    
+
     if (isCompleted) return;
-    
+
     // 타이머를 가동하여 1초 후에 컴퓨터가 표시하게 한다.
     isWorking = true;
     setTimeout(() => {
@@ -44,6 +44,7 @@ cells.click((e) => {
                 break;
             }
         }
+
         computeGame();
         isWorking = false;
     }, 1000);
@@ -54,17 +55,17 @@ $('#new-game').click((e) => {
     count = 0;
     isCompleted = false;
     isWorking = false;
-    for (var i in cellData) {
+    for (var i in cellData)
         cellData[i] = 0;
-    }
 });
 
 function isCellChecked(no) {
-    return cells[no] > 0;
+    return cellData[no] > 0;
 }
 
 function checkCell(no, gamer) {
-    $(cells[no]).addClass(gamer === 'computer' ? 'cell-o' : 'cell-x');
+    $(cells[no]).addClass(
+        gamer === 'computer' ? 'cell-o' : 'cell-x');
     cellData[no] = gamer === 'computer' ? 10 : 1;
 }
 
@@ -91,7 +92,6 @@ function computeGame() {
         sum += cellData[i];
     if (isGameOver(sum)) return;
 
-    
     sum = 0;
     for (var i = 2; i <= 6; i += 2)
         sum += cellData[i];
@@ -106,12 +106,3 @@ function isGameOver(result) {
     }
     return false;
 }
-
-
-
-
-
-
-
-
-
