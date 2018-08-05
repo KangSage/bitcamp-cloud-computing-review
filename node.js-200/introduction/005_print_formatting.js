@@ -1,3 +1,4 @@
+// 005. 포맷팅(Formatting)해서 출력하기
 "use strict";
 
 console.log('name:%s', 'sage'); // 템플릿 형식으로 출력하기

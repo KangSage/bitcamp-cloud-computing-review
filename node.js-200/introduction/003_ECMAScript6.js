@@ -1,3 +1,4 @@
+// 003. ECMAScript6(ES6)란?
 "use strict";
 
 printHelloEs5();

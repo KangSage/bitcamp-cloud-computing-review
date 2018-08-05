@@ -1,3 +1,4 @@
+// 004. console.log('hello');로 'hello' 출력하기
 "use strict";
 
 // node.js의 출력은 console.log를 사용한다.
