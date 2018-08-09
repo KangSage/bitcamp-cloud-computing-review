@@ -16,8 +16,10 @@ con.connect(function (err) {
     console.log('연결 성공입니다.');
 });
 
-/*var mid = 'user003';*/
+var mid = 'user003';
+/*
 var mid = "user002' or 1=1 or ''='";
+*/
 
 // SQL문을 만들 때 변수의 값을 직접 넣어서 만드는 경우
 // 해커의 공격에 노출될 수 있다.
