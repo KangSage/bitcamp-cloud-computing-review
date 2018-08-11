@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>회원 가입</title>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="stylesheet"
+          href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #webView {
+        overflow: hidden;
+        position: relative;
+        width: 978px;
+        height: 600px;
+        margin: 0 auto;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+
+    #webView[data-show-memo='true'] {
+        overflow: visible
+    }
+    </style>
+</head>
+<body data-locale="ko">
+<div id="webView" data-canvas="true" data-show-memo="false"
+     data-show-link="false" title="페이지에 링크가 연결된 객체가 있을 경우 화면을 터치/클릭하면 표시됩니다.">
+    <div data-obj-id="zV4FO" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 118px; left: 339px; width: 300px; height: 51px;">
+        <div data-text-content="true"
+             style="font-weight: bold; font-size: 36px; text-align: center;"
+             class="">회원 가입
+        </div>
+    </div>
+    <div data-obj-id="vTdIz" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 213px; left: 339px; width: 300px; height: 40px;">
+        <input id="email" type="email" data-min-width="60" data-min-height="30"
+               data-text-content="true" placeholder="example@test.com"
+               style="color: rgb(94, 94, 94);" class="form-control"></div>
+    <div data-obj-id="UYdk8" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 190px; left: 339px; width: 300px; height: 19px;">
+        <div data-text-content="true" style="font-size:16px;" class="">이메일</div>
+    </div>
+    <div data-obj-id="JTHUy" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 372px; left: 339px; width: 300px; height: 40px;">
+        <input id="password" type="password" data-min-width="60"
+               data-min-height="30"
+               data-text-content="true"
+               style="color: rgb(94, 94, 94);" class="form-control"
+               placeholder="..."></div>
+    <div data-obj-id="oJ8Ox" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 349px; left: 339px; width: 300px; height: 19px;">
+        <div data-text-content="true" style="font-size:16px;" class="">암호</div>
+    </div>
+    <div data-obj-id="BwN8z" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 449px; left: 439px; width: 100px; height: 40px;">
+        <div data-text-content="true"
+             style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2.5em; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(52, 152, 219);"
+             spellcheck="false" id="joinBtn">가입하기
+        </div>
+    </div>
+    <div data-obj-id="H27xb" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 292px; left: 339px; width: 300px; height: 40px;">
+        <input id="name" type="text" data-min-width="60" data-min-height="30"
+               data-text-content="true" placeholder="홍길동"
+               style="color: rgb(94, 94, 94);" class="form-control"
+               spellcheck="false">
+    </div>
+    <div data-obj-id="XD2m8" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 269px; left: 339px; width: 300px; height: 19px;">
+        <div data-text-content="true" style="font-size:16px;" class="">이름</div>
+    </div>
+    <div data-obj-id="BXS9B" data-obj-type="element" class=""
+         style="position: absolute; top: 532px; left: 69.5px; width: 839px; height: 20px;">
+        <hr>
+    </div>
+    <div data-obj-id="ehOWE" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 552px; left: 69.5px; width: 300px; height: 22px;">
+        <div data-text-content="true" style="font-size: 14px;" class="">개인 명함
+            관리
+        </div>
+    </div>
+    <div data-obj-id="Ao9T6" data-obj-type="element" data-text-editable="true"
+         class=""
+         style="position: absolute; top: 552px; left: 608.5px; width: 300px; height: 23px;">
+        <div data-text-content="true"
+             style="font-size: 12px; text-align: right; line-height: 1.4em;"
+             class="" spellcheck="false"><span
+                style="text-align: start; white-space: normal; font-family: &quot;Helvetica Neue&quot;, Helvetica, &quot;Malgun gothic&quot;, Arial; font-size: 11.9px; font-variant-ligatures: normal; orphans: 2; widows: 2;">©</span>
+            2018 비트캠프
+        </div>
+    </div>
+</div>
+<!--jQuery, popper, bootstrap-->
+<!-- sweetalert2 -->
+<script src='./node_modules/sweetalert2/dist/sweetalert2.all.min.js'></script>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    let joinBtn = $('#joinBtn'),
+        inputEmail = $('#email'),
+        inputName = $('#name'),
+        inputPassword = $('#password');
+
+
+    joinBtn.on('click', function () {
+        $.ajax({
+            url: './json/member/add',
+            type: 'POST',
+            data: {
+                email: inputEmail.val(),
+                name: inputName.val(),
+                password: inputPassword.val()
+            },
+            dataType: 'json',
+            success: (result) => {
+                console.log(result.status);
+                console.log(result.count);
+                swal('감사합니다!',
+                    '회원가입이 완료되었습니다.',
+                    'success'
+                ).then(function () {
+                    window.location.href = './loginform.html';
+                });
+                /*location.href='../auth/loginform.html';*/
+            },
+            error: (result) => {
+                console.log(result.status);
+                console.log(result.count);
+                swal({
+                    type: 'error',
+                    title: '회원가입 실패!',
+                    text: '회원가입 요청 중에 문제가 발생하였습니다.'
+                });
+            }
+        });
+    })
+</script>
+</body>
+</html>
