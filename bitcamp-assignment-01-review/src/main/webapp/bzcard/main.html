@@ -97,7 +97,7 @@
 <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script>
-let /*writerNo = $('#writer.no'),
+var /*writerNo = $('#writer.no'),
     inputName = $('#inputName'),
     inputTel = $('#inputTel'),
     inputFax = $('#inputFax'),
@@ -107,6 +107,7 @@ let /*writerNo = $('#writer.no'),
     addBtn = $('#addBtn'),
     contAddBtn = '#contAddBtn',
     addConts = $('#addConts'),
+    viewConts = $('#viewConts'),
     dataList = $('#datascroll'),
     tbody = $('#cardTable > tbody'),
     viewLink = $('.viewLink');
@@ -138,6 +139,7 @@ function printList() {
 }
 
 addBtn.on('click', () => {
+    viewConts.empty();
     addConts.load('./form.html');
     addConts.show();
 });
@@ -160,6 +162,7 @@ $(document).on('click', contAddBtn, () => {
         success: (result) => {
             console.log(result.status);
             console.log(result.count);
+            location.reload();
         },
         error: (result) => {
             console.log(result.status);
@@ -170,9 +173,28 @@ $(document).on('click', contAddBtn, () => {
 
 tbody.on('click', 'a.viewLink', function (event) {
     event.preventDefault();
-    var id = $(event.target).attr('data-id');
-    addConts.hide();
-    location.href = `view.html?id=${id}&page=${data.page}&size=${data.size}`;
+    var no = $(event.target).attr('data-no');
+    addConts.html('');
+    viewConts.empty();
+    setTimeout(viewConts.load('./view.html'), 500);
+    $.ajax({
+        url: `../json/bzcard/view/${no}`,
+        type: 'GET',
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: 'json',
+        success: (result) => {
+            console.log(result.Bzcard);
+
+            viewName.val(result.Bzcard.name);
+            viewTel.val(result.Bzcard.tel);
+            viewFax.val(result.Bzcard.fax);
+            viewEmail.val(result.Bzcard.email);
+            viewMemo.val(result.Bzcard.memo);
+        },
+        error: (result) => {
+            console.log(result);
+        }
+    });
 });
 </script>
 </body>

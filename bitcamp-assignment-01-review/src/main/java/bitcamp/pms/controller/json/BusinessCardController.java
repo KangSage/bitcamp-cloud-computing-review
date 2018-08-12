@@ -58,7 +58,7 @@ public class BusinessCardController {
         System.out.println(no);
         HashMap<String, Object> data = new HashMap<>();
         BusinessCard bc = businessCardService.get(no);
-        data.put("BusinessCard", bc);
+        data.put("Bzcard", bc);
         return data;
     }
 
