@@ -16,8 +16,22 @@ public class BusinessCardService {
     @Autowired
     BusinessCardDao businessCardDao;
 
+    public List<BusinessCard> list(int page, int size, int no) {
+        HashMap<String, Object> params = new HashMap<>();
+
+        if (page > 0 && (size > 0 && size <= 20))  {
+            params.put("startIndex", (page - 1) * size);
+            params.put("pageSize", size);
+            params.put("writerNo", no);
+        }
+        return businessCardDao.selectList(params);
+    }
+
     public int add(BusinessCard bc) {
         return businessCardDao.insert(bc);
     }
 
+    public BusinessCard get(int no) {
+        return businessCardDao.selectOne(no);
+    }
 }

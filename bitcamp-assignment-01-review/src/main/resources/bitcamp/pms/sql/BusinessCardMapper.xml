@@ -17,7 +17,21 @@
     
     <insert id="insert" parameterType="bitcamp.pms.domain.BusinessCard">
         insert into tb_bscard(mno,name,tel,fax,email,memo)
-        values(#{writer.no},#{name},#{tel},#{tax},#{email}, #{memo})
+        values(#{writer.no},#{name},#{tel},#{fax},#{email}, #{memo})
     </insert>
 
+    <select id="selectList" resultMap="bsMap" parameterType="map">
+        select no, name, mno
+        from tb_bscard
+<!--        <if test="startIndex != null and pageSize != null">
+            limit #{startIndex}, #{pageSize}
+        </if>-->
+        where mno=#{writerNo}
+    </select>
+
+    <select id="selectOne" resultMap="bsMap" parameterType="int">
+        select mno, name, tel, fax, email, memo
+        from tb_bscard
+        where no=#{value}
+    </select>
 </mapper>

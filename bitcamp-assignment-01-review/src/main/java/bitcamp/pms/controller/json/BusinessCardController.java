@@ -1,13 +1,10 @@
 package bitcamp.pms.controller.json;
 
 import bitcamp.pms.domain.BusinessCard;
-import bitcamp.pms.domain.Member;
 import bitcamp.pms.service.BusinessCardService;
-import bitcamp.pms.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,12 +16,9 @@ public class BusinessCardController {
     @Autowired
     BusinessCardService businessCardService;
 
-    @GetMapping("add")
-    public Object add(BusinessCard bc, @RequestParam(defaultValue = "1") int writerNo) throws Exception {
-        System.out.println("dd");
+    @PostMapping("add")
+    public Object add(BusinessCard bc) throws Exception {
         System.out.println(bc);
-        bc.setWriterNo(writerNo);
-        System.out.println(writerNo);
         int count = businessCardService.add(bc);
 
         HashMap<String, Object> result = new HashMap<>();
@@ -42,16 +36,29 @@ public class BusinessCardController {
     @RequestMapping("list")
     public Object list(
             @RequestParam(defaultValue="1") int page,
-            @RequestParam(defaultValue="3") int size) throws Exception {
+            @RequestParam(defaultValue="3") int size, int no) throws Exception {
 
         if (page < 1) page = 1;
         if (size < 1 || size > 20) size = 3;
 
+        List<BusinessCard> list = businessCardService.list(page, size, no);
 
         HashMap<String,Object> data = new HashMap<>();
+        System.out.println(list);
+        data.put("list", list);
         data.put("page", page);
         data.put("size", size);
 
+        return data;
+    }
+
+    @GetMapping("view/{no}")
+    public Object view(
+            @PathVariable int no) throws Exception {
+        System.out.println(no);
+        HashMap<String, Object> data = new HashMap<>();
+        BusinessCard bc = businessCardService.get(no);
+        data.put("BusinessCard", bc);
         return data;
     }
 

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>명함관리시스템 ver0.01</title>
+    <link rel="stylesheet"
+          href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .form-group {
+            text-align: left;
+        }
+
+        form {
+            margin: auto;
+        }
+
+        .container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .datascroll {
+            overflow: auto;
+            height: 600px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .card {
+            height: 600px;
+        }
+
+        .btngroup {
+            text-align: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <nav class="nav">
+        <a class="navbar-brand" href="#">개인명함관리</a>
+        <a id="eUnjoin" class="nav-link" href="#">회원탈퇴</a>
+        <a id="eLogout" class="nav-link" href="#">로그아웃</a>
+    </nav>
+    <hr>
+    <div class="contents">
+        <div class="col-md-3" style="float: left;">
+            <div class="input-group">
+                <input class="form-control py-2" type="search"
+                       id="search-input"> <span
+                    class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">검색</button>
+</span>
+            </div>
+            <div class="dataList">
+                <table id="cardTable" class="table table-borderless">
+                    <tbody id="cardCont">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-9" style="float: right;">
+            <div class="card">
+                <div id="viewConts">
+
+                </div>
+                <div id="addConts">
+<!--                    <table id="cardTable" class="table table-borderless">
+                        <tbody id="cardCont">
+
+                        </tbody>
+                    </table>-->
+                </div>
+            </div>
+            <div class="btngroup">
+                <button id="addBtn" type="button" class="btn btn-primary btn-sm">추가</button>
+                <button id="updateBtn" type="button"
+                        class="btn btn-primary btn-sm">편집
+                </button>
+                <button type="button" class="btn btn-primary btn-sm">삭제</button>
+            </div>
+        </div>
+        <div class="clear-both" style="clear: both;"></div>
+    </div>
+
+    <hr>
+    © 2018 정현컴퍼니
+</div>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+let /*writerNo = $('#writer.no'),
+    inputName = $('#inputName'),
+    inputTel = $('#inputTel'),
+    inputFax = $('#inputFax'),
+    inputEmail = $('#inputEmail'),
+    inputMemo = $('#inputMemo'),*/
+    // 버튼을 담을 변수
+    addBtn = $('#addBtn'),
+    contAddBtn = '#contAddBtn',
+    addConts = $('#addConts'),
+    dataList = $('#datascroll'),
+    tbody = $('#cardTable > tbody'),
+    viewLink = $('.viewLink');
+
+    printList();
+
+function printList() {
+    $.ajax({
+        url: '../json/bzcard/list',
+        type: 'GET',
+        data: {
+            no : 1,
+        },
+        dataType: 'json',
+        success: (data) => {
+            tbody.html('');
+            for (let item of data.list) {
+                $("<tr>")
+                    .html(`<td>
+                     <a href='#' data-no='${item.no}' class='viewLink'>${item.name}</a>
+                    </td>`)
+                    .appendTo(tbody);
+            }
+        },
+        error: (data) => {
+            console.log(data);
+        }
+    });
+}
+
+addBtn.on('click', () => {
+    addConts.load('./form.html');
+    addConts.show();
+});
+
+$(document).on('click', contAddBtn, () => {
+    console.log(writerNo);
+    $.ajax({
+        url: '../json/bzcard/add',
+        type: 'POST',
+        data: {
+            'writer.no' : writerNo,
+            name : inputName.val(),
+            tel : inputTel.val(),
+            fax : inputFax.val(),
+            email : inputEmail.val(),
+            memo : inputMemo.val()
+        },
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: 'json',
+        success: (result) => {
+            console.log(result.status);
+            console.log(result.count);
+        },
+        error: (result) => {
+            console.log(result.status);
+            console.log(result.count);
+        }
+    });
+});
+
+tbody.on('click', 'a.viewLink', function (event) {
+    event.preventDefault();
+    var id = $(event.target).attr('data-id');
+    addConts.hide();
+    location.href = `view.html?id=${id}&page=${data.page}&size=${data.size}`;
+});
+</script>
+</body>
+
+</html>

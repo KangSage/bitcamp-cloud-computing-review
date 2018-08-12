@@ -1,0 +1,33 @@
+<form class="center-block">
+<h2>명함추가</h2>
+    <input id="writerNo" type=hidden value="1">
+<div class="form-group">
+    <label for="inputName">이름</label>
+    <input type="text" class="form-control name" id="inputName">
+</div>
+<div class="form-group">
+    <label for="inputTel">휴대전화</label>
+    <input type="tel" class="form-control" id="inputTel">
+</div>
+<div class="form-group">
+    <label for="inputFax">팩스</label>
+    <input type="tel" class="form-control" id="inputFax">
+</div>
+<div class="form-group">
+    <label for="inputEmail">이메일</label>
+    <input type="email" class="form-control" id="inputEmail">
+</div>
+<div class="form-group">
+    <label for="inputMemo">메모</label>
+    <textarea class="form-control" id="inputMemo" rows="4"></textarea>
+</div>
+<button id="contAddBtn" type="button" class="btn btn-primary">명함 추가</button>
+</form>
+<script>
+    let writerNo = $('#writerNo').val(),
+        inputName = $('#inputName'),
+        inputTel = $('#inputTel'),
+        inputFax = $('#inputFax'),
+        inputEmail = $('#inputEmail'),
+        inputMemo = $('#inputMemo');
+</script>
