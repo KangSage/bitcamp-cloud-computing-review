@@ -2,26 +2,26 @@
     <h2>명함추가</h2>
     <input id="viewWriterNo" type=hidden value="1">
     <div class="form-group">
-        <label for="inputName">이름</label>
+        <label for="viewName">이름</label>
         <input type="text" class="form-control name" id="viewName">
     </div>
     <div class="form-group">
-        <label for="inputTel">휴대전화</label>
+        <label for="viewTel">휴대전화</label>
         <input type="tel" class="form-control" id="viewTel">
     </div>
     <div class="form-group">
-        <label for="inputFax">팩스</label>
+        <label for="viewFax">팩스</label>
         <input type="tel" class="form-control" id="viewFax">
     </div>
     <div class="form-group">
-        <label for="inputEmail">이메일</label>
+        <label for="viewEmail">이메일</label>
         <input type="email" class="form-control" id="viewEmail">
     </div>
     <div class="form-group">
-        <label for="inputMemo">메모</label>
+        <label for="viewMemo">메모</label>
         <textarea class="form-control" id="viewMemo" rows="4"></textarea>
     </div>
-    <button id="contAddBtn" type="button" class="btn btn-primary">명함 추가</button>
+    <button id="contUpdateBtn" type="button" class="btn btn-primary">수정 반영</button>
 </form>
 <script>
     var viewWriterNo = $('#viewWriterNo').val(),
@@ -29,5 +29,8 @@
         viewTel = $('#viewTel'),
         viewFax = $('#viewFax'),
         viewEmail = $('#viewEmail'),
-        viewMemo = $('#viewMemo');
+        viewMemo = $('#viewMemo'),
+        contUpdateBtn = $('button#contUpdateBtn');
+    contUpdateBtn.hide();
+
 </script>

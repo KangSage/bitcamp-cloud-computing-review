@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,8 +44,8 @@
 <div class="container">
     <nav class="nav">
         <a class="navbar-brand" href="#">개인명함관리</a>
-        <a id="eUnjoin" class="nav-link" href="#">회원탈퇴</a>
-        <a id="eLogout" class="nav-link" href="#">로그아웃</a>
+        <a id="eUnjoin" class="nav-link" href="#">회원탈퇴 <- 기능 미구현</a>
+        <a id="eLogout" class="nav-link" href="#">로그아웃 <- 기능 미구현</a>
     </nav>
     <hr>
     <div class="contents">
@@ -82,9 +81,9 @@
             <div class="btngroup">
                 <button id="addBtn" type="button" class="btn btn-primary btn-sm">추가</button>
                 <button id="updateBtn" type="button"
-                        class="btn btn-primary btn-sm">편집
+                        class="btn btn-primary btn-sm">편집 <- 기능 미구현
                 </button>
-                <button type="button" class="btn btn-primary btn-sm">삭제</button>
+                <button type="button" class="btn btn-primary btn-sm">삭제 <- 기능 미구현</button>
             </div>
         </div>
         <div class="clear-both" style="clear: both;"></div>
@@ -93,6 +92,7 @@
     <hr>
     © 2018 정현컴퍼니
 </div>
+<script src='../node_modules/sweetalert2/dist/sweetalert2.all.min.js'></script>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -110,7 +110,8 @@ var /*writerNo = $('#writer.no'),
     viewConts = $('#viewConts'),
     dataList = $('#datascroll'),
     tbody = $('#cardTable > tbody'),
-    viewLink = $('.viewLink');
+    viewLink = $('.viewLink'),
+    updateBtn = $('#updateBtn');
 
     printList();
 
@@ -123,6 +124,17 @@ function printList() {
         },
         dataType: 'json',
         success: (data) => {
+            console.log(data);
+            if (data.status === 'fail') {
+                swal({
+                    type: 'error',
+                    title: '로그인이 필요합니다.',
+                    text: '로그인 후 이용해주세요.',
+                }).then(function () {
+                    location.href = '../loginform.html';
+                });
+                return;
+            }
             tbody.html('');
             for (let item of data.list) {
                 $("<tr>")
@@ -160,13 +172,13 @@ $(document).on('click', contAddBtn, () => {
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType: 'json',
         success: (result) => {
-            console.log(result.status);
-            console.log(result.count);
+            console.log('success status =>', result.status);
+            console.log('success count =>',result.count);
             location.reload();
         },
         error: (result) => {
-            console.log(result.status);
-            console.log(result.count);
+            console.log('error status =>', result.status);
+            console.log('error count =>', result.count);
         }
     });
 });
@@ -174,17 +186,16 @@ $(document).on('click', contAddBtn, () => {
 tbody.on('click', 'a.viewLink', function (event) {
     event.preventDefault();
     var no = $(event.target).attr('data-no');
-    addConts.html('');
+    addConts.empty();
     viewConts.empty();
-    setTimeout(viewConts.load('./view.html'), 500);
+    viewConts.load('./view.html');
+
     $.ajax({
         url: `../json/bzcard/view/${no}`,
         type: 'GET',
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType: 'json',
         success: (result) => {
-            console.log(result.Bzcard);
-
             viewName.val(result.Bzcard.name);
             viewTel.val(result.Bzcard.tel);
             viewFax.val(result.Bzcard.fax);
@@ -196,7 +207,41 @@ tbody.on('click', 'a.viewLink', function (event) {
         }
     });
 });
+
+var viewContUpdateBtn;
+updateBtn.on('click', () => {
+    contUpdateBtn.show();
+    viewContUpdateBtn = contUpdateBtn;
+});
+
+if (viewContUpdateBtn) {
+    viewContUpdateBtn.on('click', () => {
+        console.log('찍히나?');
+    $.ajax({
+        url: '../json/bzcard/update',
+        type: 'POST',
+        data: {
+            'writer.no' : writerNo,
+            name : inputName.val(),
+            tel : inputTel.val(),
+            fax : inputFax.val(),
+            email : inputEmail.val(),
+            memo : inputMemo.val()
+        },
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: 'json',
+        success: (result) => {
+            console.log('success status =>', result.status);
+            console.log('success count =>',result.count);
+            location.reload();
+        },
+        error: (result) => {
+            console.log('error status =>', result.status);
+            console.log('error count =>', result.count);
+        }
+    });
+})
+}
 </script>
 </body>
-
 </html>

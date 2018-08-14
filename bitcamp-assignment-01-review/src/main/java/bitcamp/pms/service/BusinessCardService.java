@@ -34,4 +34,8 @@ public class BusinessCardService {
     public BusinessCard get(int no) {
         return businessCardDao.selectOne(no);
     }
+
+    public int update(BusinessCard bc) {
+        return businessCardDao.update(bc);
+    }
 }

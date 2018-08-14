@@ -12,4 +12,5 @@ public interface BusinessCardDao {
     int insert(BusinessCard bc);
     List<BusinessCard> selectList(HashMap<String, Object> params);
     BusinessCard selectOne(int no);
+    int update(BusinessCard bc);
 }

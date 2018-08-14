@@ -46,6 +46,13 @@
         allowed-origins="*"
         max-age="100" />
   </mvc:cors>
+
+<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/bzcard/**"/>
+            <bean class="bitcamp.pms.controller.json.interceptor.AuthCheckInterceptor"/>
+    </mvc:interceptor>
+</mvc:interceptors>
 </beans>
 
 

@@ -3,6 +3,7 @@ package bitcamp.pms.dao;
 import bitcamp.pms.domain.Member;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,4 +23,7 @@ public interface MemberDao {
     int delete(String id);
 
     int countByEmailAndPassword(Member member);
+
+    Member selectOneWithPassword(HashMap<String, Object> params);
+
 }

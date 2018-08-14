@@ -32,6 +32,18 @@ public class BusinessCardController {
         return result;
     }
 
+    @RequestMapping("update")
+    public Object update(BusinessCard bc) throws Exception {
+        HashMap<String, Object> result = new HashMap<>();
+        if (businessCardService.update(bc) == 0) {
+            result.put("status", "fail");
+            result.put("error", "해당 아이디가 없습니다.");
+        } else {
+            result.put("status", "success");
+        }
+        return result;
+    }
+
     @CrossOrigin
     @RequestMapping("list")
     public Object list(

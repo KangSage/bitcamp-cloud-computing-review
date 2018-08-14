@@ -86,6 +86,13 @@
   <context:property-placeholder 
       location="classpath:bitcamp/pms/config/jdbc.properties"/>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/bzcard/**"/>
+            <bean class="bitcamp.pms.controller.json.interceptor.AuthCheckInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
 
 

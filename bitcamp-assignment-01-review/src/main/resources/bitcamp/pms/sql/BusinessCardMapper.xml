@@ -20,6 +20,12 @@
         values(#{writer.no},#{name},#{tel},#{fax},#{email}, #{memo})
     </insert>
 
+    <update id="update" parameterType="bitcamp.pms.domain.BusinessCard">
+        update tb_bscard
+        set name=#{name}, tel=#{tel}, fax=#{fax}, email=#{email} ,memo=#{memo}
+        where no=#{no}
+    </update>
+
     <select id="selectList" resultMap="bsMap" parameterType="map">
         select no, name, mno
         from tb_bscard

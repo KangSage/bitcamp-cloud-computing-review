@@ -26,6 +26,12 @@
         where mid=#{value}
     </select>
 
+    <select id="selectOneWithPassword" parameterType="map" resultMap="MemberMap">
+    select email, pwd
+    from tb_member
+    where email=#{email} and pwd=password(#{password})
+  </select>
+
     <insert id="insert" parameterType="Member">
         insert into tb_member(name,email,pwd)
         values(#{name},#{email},password(#{password}))

@@ -103,7 +103,7 @@
 
     loginBtn.on('click', function() {
         $.ajax({
-            url : './json/member/login',
+            url : './json/auth/login',
             type : 'POST',
             data: {
                 email: inputEmail.val(),
@@ -120,7 +120,7 @@
                     ).then(function() {
                         window.location.href = 'bzcard/main.html';
                     });
-                } else if (result.status === 'error') {
+                } else if (result.status === 'fail') {
                     console.log(result.status);
                     console.log(result.count);
                     swal({
@@ -131,6 +131,7 @@
                 }
             },
             error: (result) => {
+                console.log(result);
                 console.log(result.status);
                 console.log(result.count);
                 swal({
