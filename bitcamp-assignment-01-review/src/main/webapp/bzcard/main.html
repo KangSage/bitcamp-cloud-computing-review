@@ -114,6 +114,24 @@ var /*writerNo = $('#writer.no'),
     updateBtn = $('#updateBtn');
 
     printList();
+(_=> {
+    $.ajax({
+        url: `../json/bzcard/view/111`,
+        type: 'GET',
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: 'json',
+        success: (result) => {
+            viewName.val(result.Bzcard.name);
+            viewTel.val(result.Bzcard.tel);
+            viewFax.val(result.Bzcard.fax);
+            viewEmail.val(result.Bzcard.email);
+            viewMemo.val(result.Bzcard.memo);
+        },
+        error: (result) => {
+            console.log(result);
+        }
+    });
+})();
 
 function printList() {
     $.ajax({

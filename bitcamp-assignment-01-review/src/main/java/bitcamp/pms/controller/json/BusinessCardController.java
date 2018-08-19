@@ -56,7 +56,6 @@ public class BusinessCardController {
         List<BusinessCard> list = businessCardService.list(page, size, no);
 
         HashMap<String,Object> data = new HashMap<>();
-        System.out.println(list);
         data.put("list", list);
         data.put("page", page);
         data.put("size", size);

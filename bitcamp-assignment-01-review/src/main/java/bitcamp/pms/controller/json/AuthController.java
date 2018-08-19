@@ -4,12 +4,11 @@ import bitcamp.pms.dao.MemberDao;
 import bitcamp.pms.domain.Member;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,16 +17,15 @@ import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
-@Controller
+
+@RestController
 @RequestMapping("/auth")
 public class AuthController {
-
     @Autowired
     MemberDao memberDao;
 
-
    @PostMapping("/login")
-    public void login(
+    public Object login(
             @RequestParam("email") String email,
             @RequestParam("password") String password,
             HttpServletRequest request,
@@ -52,15 +50,16 @@ public class AuthController {
         if (member != null) { // 로그인 성공!
             System.out.println("로그인 성공");
             session.setAttribute("loginUser", member);
+            System.out.println(session.getAttribute("loginUser").toString());
             result.put("status", "success");
             out.print(mapper.writeValueAsString(result));
-            /*return result;*/
+            return result;
         } else { // 로그인 실패!
             System.out.println("로그인 실패");
             result.put("status", "fail");
             session.invalidate();
-            out.print(mapper.writeValueAsString(result));
-            /*return result;*/
+            /*out.print(mapper.writeValueAsString(result));*/
+            return result;
         }
     }
 

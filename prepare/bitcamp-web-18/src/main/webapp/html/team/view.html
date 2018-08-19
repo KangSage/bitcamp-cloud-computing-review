@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>팀 보기</title>
+</head>
+<body>
+<h1 class="viewform">팀 보기</h1>
+<h1 class="newfrom">팀 등록</h1>
+<form>
+    <table border='1'>
+        <tr>
+            <th>팀명</th>
+            <td><input type="text" id="eName" readonly></td>
+        </tr>
+        <tr>
+            <th>설명</th><td>
+            <textarea id="eDescription"
+                      rows="6" cols="60"></textarea></td>
+        </tr>
+        <tr>
+            <th>최대인원</th>
+            <td><input type="number" id="eMaxQuantity" value="3"></td>
+        </tr>
+        <tr>
+            <th>시작일</th>
+            <td><input type="date" id="eStartDate"></td>
+        </tr>
+        <tr>
+            <th>종료일</th>
+            <td><input type="date" id="eEndDate"></td>
+        </tr>
+    </table>
+    <p>
+        <button id="eListBtn" type="button">목록</button>
+        <button id="eUpdateBtn" type="button" class="viewform">변경</button>
+        <button id="eDeleteBtn" type="button" class="viewform">삭제</button>
+        <button id="eAddBtn" type="button" class="newform">등록</button>
+    </p>
+</form>
+<script src="../js/common.js"></script>
+<script>
+    "use strict";
+
+    var data = null;
+    var {name, page, size} = parseQuery(location.href);
+
+    console.log(name);
+    if (name == 'undefined') { // 입력 폼.
+        var el = document.querySelectorAll('.viewform');
+        for (var e of el) {
+            e.style.display = 'none';
+        }
+        eName.removeAttribute('readonly');
+    } else { // 상세 보기 폼
+        var el = document.querySelectorAll('.newform');
+        for (var e of el) {
+            e.style.display = 'none';
+        }
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState < 4) return;
+            if (xhr.status !== 200) {
+                alert("서버에서 오류 발생!");
+                return;
+            }
+            data = JSON.parse(xhr.responseText);
+            if (data.team == null) {
+                alert('팀이 무효합니다.');
+                location.href = "list.html";
+                return;
+            }
+            eName.value = data.team.name;
+            eDescription.value = data.team.description;
+            eMaxQuantity.value = data.team.maxQuantity;
+            eStartDate.value = data.team.startDate;
+            eEndDate.value = data.team.endDate;
+        };
+
+        xhr.open('GET',
+            `../../json/team/view/${name}`,
+            true);
+        xhr.send();
+    }
+
+    eListBtn.onclick = function() {
+        if (page) {
+            location.href = `list.html?page=${page}&size=${size}`;
+        } else {
+            location.href = 'list.html';
+        }
+    };
+
+    eUpdateBtn.onclick = function () {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState < 4) return;
+            if (xhr.status !== 200) {
+                alert("서버에서 오류 발생!");
+                return;
+            }
+            let data = JSON.parse(xhr.responseText);
+            if (data.status == 'success') {
+                location.href = `list.html?page=${page}&size=${size}`;
+            } else {
+                alert('변경 오류 입니다.');
+                console.log(data.error);
+            }
+        };
+
+        xhr.open('POST', '../../json/team/update', true);
+        xhr.setRequestHeader('Content-Type',
+            'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.send(`name=${eName.value}&description=${eDescription.value}&maxQuantity=${eMaxQuantity.value}&startDate=${eStartDate.value}&endDate=${eEndDate.value}`);
+    };
+
+    eDeleteBtn.onclick = function () {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState < 4) return;
+            if (xhr.status !== 200) {
+                alert("서버에서 오류 발생!");
+                return;
+            }
+            let data = JSON.parse(xhr.responseText);
+            if (data.status == 'success') {
+                location.href = `list.html?page=${page}&size=${size}`;
+            } else {
+                alert('삭제 오류입니다.');
+                console.log(data.error);
+            }
+        };
+
+        xhr.open('GET',
+            `../../json/team/delete?name=${eName.value}`,
+            true);
+        xhr.send();
+    };
+
+    eAddBtn.onclick = function () {
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState < 4) return;
+            if (xhr.status !== 200) {
+                alert("서버에서 오류 발생!");
+                return;
+            }
+            location.href = 'list.html';
+        };
+
+        xhr.open('POST', '../../json/team/add', true);
+        xhr.setRequestHeader('Content-Type',
+            'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.send(`name=${eName.value}&description=${eDescription.value}&maxQuantity=${eMaxQuantity.value}&startDate=${eStartDate.value}&endDate=${eEndDate.value}`);
+    }
+</script>
+</body>
+</html>
